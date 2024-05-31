@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_invoice_document_inherit_sale" inherit_id="account.report_invoice_document">
+    <xpath expr="//div[@id='qrcode']" position="replace">
+      <div id="qrcode" class="d-flex mb-3 avoid-page-break-inside" t-else="">
+        <div class="qrcode me-3" id="qrcode_image">
+          <t t-set="qr_code_url" t-value="o.qr_raw_data" />
+          <p t-if="qr_code_url" class="position-relative mb-0">
+            <img t-att-src="qr_code_url" />
+            <img src="/tada_lms_qr_code/static/icons/bank.png"
+              id="qrcode_odoo_logo"
+              class="top-50 start-50 position-absolute bg-white border border-white border-3 rounded-circle"
+            />
+          </p>
+        </div>
+        <div class="d-inline text-muted lh-sm fst-italic" id="qrcode_info" t-if="qr_code_url">
+          <p>Scan this QR Code to<br />pay with your mobile </p>
+        </div>
+      </div>
+    </xpath>
+  </template>
+</odoo>
